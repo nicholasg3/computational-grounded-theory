@@ -8,7 +8,9 @@ Based on Aron Lindberg's methodological guide:
 
 ## Source PDF
 
-**[references/computational-framework-process-theory-development.pdf](references/computational-framework-process-theory-development.pdf)** (bundled in this repo)
+- **In repo:** [references/computational-framework-process-theory-development.pdf](references/computational-framework-process-theory-development.pdf)
+- **On GitHub:** https://github.com/nicholasg3/computational-grounded-theory/blob/main/references/computational-framework-process-theory-development.pdf
+- **Original local path:** `/Users/nicholasgarcia/Downloads/(long) A Computational Framework for Process Theory Development.pdf`
 
 Peer-reviewed companion:
 

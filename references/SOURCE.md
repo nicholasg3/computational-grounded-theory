@@ -5,8 +5,11 @@
 **Title:** Automating Organizational Research? A Computational Framework for Process Theory Development  
 **Also known as:** *A Computational Framework for Process Theory Development* (49 pp.)
 
-**Local copy in this repo:**  
-[computational-framework-process-theory-development.pdf](./computational-framework-process-theory-development.pdf)
+**Bundled copy:** [computational-framework-process-theory-development.pdf](./computational-framework-process-theory-development.pdf)
+
+**GitHub:** https://github.com/nicholasg3/computational-grounded-theory/blob/main/references/computational-framework-process-theory-development.pdf
+
+**Original file:** `/Users/nicholasgarcia/Downloads/(long) A Computational Framework for Process Theory Development.pdf`
 
 **Author (attributed from content & related publications):** Aron Lindberg (Stevens Institute of Technology)
 
