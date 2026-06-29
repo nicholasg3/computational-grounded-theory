@@ -1,0 +1,73 @@
+# computational-grounded-theory
+
+Agent skill + reference kit for **computational grounded theory** aimed at **process theory** development — mixing Charmaz constructivist GTM with machine pattern recognition.
+
+Based on Aron Lindberg's methodological guide:
+
+> **Automating Organizational Research? A Computational Framework for Process Theory Development**
+
+## Source PDF
+
+**[references/computational-framework-process-theory-development.pdf](references/computational-framework-process-theory-development.pdf)** (bundled in this repo)
+
+Peer-reviewed companion:
+
+- Lindberg, A. (2020). *Developing theory through integrating human and machine pattern recognition.* **JAIS** 21(1).  
+  https://aisel.aisnet.org/jais/vol21/iss1/7/ · DOI [10.17705/1jais.00593](https://doi.org/10.17705/1jais.00593)
+
+## Quick start
+
+### As a Grok / Cursor skill
+
+Copy or symlink into your skills folder:
+
+```bash
+# user-global
+ln -sf "$(pwd)/SKILL.md" ~/.grok/skills/computational-gt/SKILL.md
+
+# or project-local
+mkdir -p .grok/skills/computational-gt
+ln -sf "$(pwd)/SKILL.md" .grok/skills/computational-gt/SKILL.md
+```
+
+Invoke with `/computational-gt` or let the agent auto-load when you mention computational grounded theory / process theory + ML.
+
+### Stage witness
+
+```bash
+python3 scripts/stage_witness.py path/to/your/gt-project
+python3 scripts/stage_witness.py --selftest
+```
+
+Expect artifacts per GTM stage — see [references/gtm-computational-map.md](references/gtm-computational-map.md).
+
+## Repo layout
+
+```
+SKILL.md                 # Agent instructions (canonical)
+references/
+  SOURCE.md              # Citations + links
+  gtm-computational-map.md
+  computational-framework-process-theory-development.pdf
+scripts/
+  stage_witness.py       # Mechanical stage gate
+```
+
+## Core idea
+
+| Layer | Who |
+|-------|-----|
+| Unsupervised pattern detection | Machine (clusters, topics, sequences) |
+| Naming, mechanisms, process story | Human (abductive memos) |
+| Scale mapping & verification | Machine + human (focused coding, holdout, anomalies) |
+| Literature positioning | Human (sensitizing — not induced codes) |
+
+## Related open tools
+
+- [GTFlow](https://github.com/zw-zhtlab/GTFlow) — LLM-native GT pipeline + UI
+- [PaperQA2](https://github.com/Future-House/paper-qa) — scholarly lit RAG (not field corpus)
+- [Nelson CGT](https://github.com/lknelson/computational-grounded-theory) — sociology detect/refine/confirm
+
+## License
+
+MIT — see [LICENSE](LICENSE). The bundled PDF is included for research and citation convenience; rights remain with the author/publisher.
