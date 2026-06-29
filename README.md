@@ -39,6 +39,17 @@ python3 scripts/stage_witness.py path/to/your/gt-project
 python3 scripts/stage_witness.py --selftest
 ```
 
+### Open coding (LLM ↔ human annotator)
+
+```bash
+python3 scripts/open_coding.py path/to/gt-project --init --mode collaborative
+python3 scripts/open_coding.py path/to/gt-project --next --batch 3
+python3 scripts/open_coding.py path/to/gt-project --export
+python3 scripts/open_coding.py --selftest
+```
+
+Modes: **collaborative** (LLM suggests, human settles), **human_only** (no suggestions), **delegate** (min HITL). See [references/open_coding_prompts.md](references/open_coding_prompts.md).
+
 Expect artifacts per GTM stage — see [references/gtm-computational-map.md](references/gtm-computational-map.md).
 
 ## Repo layout
@@ -48,9 +59,12 @@ SKILL.md                 # Agent instructions (canonical)
 references/
   SOURCE.md              # Citations + links
   gtm-computational-map.md
+  technique_registry.md  # Libraries, repos & sibling skills per technique
+  open_coding_prompts.md
   computational-framework-process-theory-development.pdf
 scripts/
   stage_witness.py       # Mechanical stage gate
+  open_coding.py         # Stage-2 LLM↔human open coding harness
 ```
 
 ## Core idea

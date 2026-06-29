@@ -15,6 +15,7 @@ Read first:
 
 - [references/SOURCE.md](references/SOURCE.md) — PDF link + JAIS companion
 - [references/gtm-computational-map.md](references/gtm-computational-map.md) — stage → technique table
+- [references/technique_registry.md](references/technique_registry.md) — **libraries, repos & sibling skills** per technique
 - [references/computational-framework-process-theory-development.pdf](references/computational-framework-process-theory-development.pdf)
 
 ## The law
@@ -66,19 +67,42 @@ Explicitly encode what the algorithm sees (Berente et al.):
 
 ### 2 — Initial coding (open)
 
-**Human:** What is this a case of?
+**Charmaz question:** What is this a case of?
 
-**Compute (pick 1–3):** clustering, topic modeling, lexical networks, latent factors (PCA/correspondence), embeddings, sequence/routine mining.
+The **agent (LLM) mediates** each snippet to a human annotator — or codes on its own when delegate mode is set. See [references/open_coding_prompts.md](references/open_coding_prompts.md).
 
-**Deliverables:** `open_codes.json` / `clusters.json` / `topics.json` + memo listing 3–5 **candidate** categories with prototype quotes.
+| Mode | LLM | Human |
+|------|-----|-------|
+| **collaborative** (default) | Offers 2–4 candidate gerund/in-vivo codes, then asks the question | Picks, refines, or writes own |
+| **human_only** | Asks only — **no suggestions** (defer entirely) | Codes every snippet |
+| **delegate** | Assigns open codes + rationale | Optional audit; disclose in memo |
 
-**Zoom-in rule:** For each cluster/topic, read ≥2 central and ≥1 peripheral exemplar in native context before naming the code.
+```bash
+python3 scripts/open_coding.py <project_dir> --init --mode collaborative --phenomenon "..."
+python3 scripts/open_coding.py <project_dir> --next --batch 3    # agent presents cards
+python3 scripts/open_coding.py <project_dir> --resolve <id> --code "..." --by human
+python3 scripts/open_coding.py <project_dir> --export             # → open_codes.json
+```
+
+**Agent loop (`--next`):** read `agent_instructions` + each card → prompt the human (or self-code in delegate) → `--resolve` → repeat until `pending_count` is 0 → `--export`.
+
+**Compute (pick 1–3, optional hints):** see [stage 2 registry](references/technique_registry.md#stage-2--initial-coding-open) — e.g. [HDBSCAN](https://github.com/scikit-learn-contrib/hdbscan) / [BERTopic](https://github.com/MaartenGr/BERTopic), [gensim LDA](https://github.com/RaRe-Technologies/gensim), [NetworkX](https://networkx.org/) lexical nets, [prince](https://github.com/MaxHalford/prince) CA, [sentence-transformers](https://github.com/UKPLab/sentence-transformers), [pm4py](https://github.com/pm4py/pm4py-core) routines → `clusters.json` / `topics.json`, then:
+
+```bash
+python3 scripts/open_coding.py <project_dir> --ingest-compute clusters.json
+```
+
+Compute hints are **not** final codes — they feed collaborative suggestions only.
+
+**Deliverables:** `open_coding_queue.json`, `open_codes.json`, optional `clusters.json` / `topics.json`, memo with 3–5 **candidate** categories + prototype quotes.
+
+**Zoom-in rule:** For each cluster/topic hint adopted as a code, read ≥2 central and ≥1 peripheral exemplar in native context before naming.
 
 ### 3 — Axial / theoretic coding
 
 Link categories to conditions, actions, consequences (Charmaz axial).
 
-**Compute:** network analysis, supervised segmentation (if pre-labeled paths), feature selection for mechanism dictionaries, time-series noise typing for complexity.
+**Compute:** see [stage 3 registry](references/technique_registry.md#stage-3--axial--theoretic-coding) — [NetworkX](https://networkx.org/) / [igraph](https://igraph.org/python/), [ruptures](https://github.com/deepcharles/ruptures) segmentation, [sklearn Lasso](https://scikit-learn.org/stable/modules/linear_model.html#lasso) + [SHAP](https://github.com/shap/shap), [nolds](https://github.com/CSchoel/nolds) noise typing.
 
 **Deliverables:** `axial_triples.json` or `codebook.json` + memo with rival mechanisms.
 
@@ -100,8 +124,10 @@ Map settled codes onto corpus at scale.
 | Mode | When |
 |------|------|
 | In vivo | Participant terms / trace enums — audit metadata quality first |
-| Hard | Transparent dictionaries (LIWC, politeness, custom rules) |
-| Predictive | "You know it when you see it" — hand-label seed set; watch concept drift |
+| Hard | [LIWC](https://www.liwc.app/) / [empath](https://github.com/Ejhfast/empath-client) / [spaCy Matcher](https://spacy.io/usage/rule-based-matching); [ConvoKit politeness](https://github.com/CornellNLP/ConvoKit) |
+| Predictive | [SetFit](https://github.com/huggingface/setfit) or sklearn; seed via [Label Studio](https://github.com/HumanSignal/label-studio) — watch concept drift |
+
+See [stage 5 registry](references/technique_registry.md#stage-5--focused-coding).
 
 **Deliverables:** `focused_codes.json` or labeled JSONL + error analysis memo.
 
@@ -109,20 +135,20 @@ Map settled codes onto corpus at scale.
 
 Not always new scraping — often **zoom into** unread archive subsets.
 
-| Aim | Tool |
+| Aim | Tool → see [stage 6 registry](references/technique_registry.md#stage-6--theoretical-sampling) |
 |-----|------|
-| Boundary cases | Active learning |
-| Outliers | Anomaly / subset scan |
-| Turning points | Change-point, regime switching, control charts |
-| Keyword gaps | LASSO keyword expansion, predictive document search |
+| Boundary cases | [small-text](https://github.com/webis-de/small-text) / [modAL](https://github.com/modAL-python/modAL) active learning |
+| Outliers | [PyOD](https://github.com/yzhao062/pyod) / sklearn `IsolationForest`; burst scan |
+| Turning points | [ruptures](https://github.com/deepcharles/ruptures); [statsmodels](https://www.statsmodels.org/) Markov regimes; [pyspc](https://github.com/carlosqsilva/pyspc) control charts |
+| Keyword gaps | sklearn [Lasso on DTM](https://scikit-learn.org/stable/modules/feature_selection.html); [rank_bm25](https://github.com/dorianbrown/rank_bm25) + classifier retrieval |
 
-Log targets in `sampling_log.json` or `zoom_targets.json`.
+Log targets in `sampling_log.json` or `zoom_targets.json` with `{technique, library, target_ids[], rationale}`.
 
 ### 7 — Verification & saturation
 
 - **Negative cases:** `negatives.json` — incidents that break the story
-- **Holdout:** train on early periods, test later (accuracy-over-time)
-- **Saturation:** `saturation_metrics.json` — novelty rate flattens; new data repeats
+- **Holdout:** [TimeSeriesSplit](https://scikit-learn.org/stable/modules/cross_validation.html#time-series-split) / rolling accuracy — see [stage 7 registry](references/technique_registry.md#stage-7--verification--saturation)
+- **Saturation:** `saturation_metrics.json` — novelty rate flattens; [GTFlow](https://github.com/zw-zhtlab/GTFlow) saturation witness optional
 
 Do not claim saturation from cluster silhouette scores alone.
 
@@ -135,13 +161,19 @@ Do not claim saturation from cluster silhouette scores alone.
 
 ## Integration with sibling tools
 
-| Tool | Layer |
-|------|-------|
+Full per-technique map: [references/technique_registry.md](references/technique_registry.md).
+
+| Tool / skill | Layer |
+|--------------|-------|
 | [GTFlow](https://github.com/zw-zhtlab/GTFlow) | LLM open→Gioia→saturation witness on field JSONL |
 | [PaperQA2](https://github.com/Future-House/paper-qa) | Lit search / sensitizing only |
-| Nelson CGT (SMR 2020) | Sociology parallel: detect → refine → confirm on text |
+| [Nelson CGT](https://github.com/lknelson/computational-grounded-theory) | Sociology parallel: detect → refine → confirm ([SMR 2020](https://doi.org/10.1177/0049124117729703)) |
+| [Label Studio](https://github.com/HumanSignal/label-studio) | Human labeling + active-learning UI |
+| **sp-field-gather** / **sp-netnography** | Field corpus (strategic-publishing skills) |
+| **sp-lit-review** | Sensitizing literature synthesis |
+| **grounded-theory** | Human-led Charmaz/Glaser discipline |
 
-Wrap GTFlow/PaperQA outputs as **advisory witnesses** — ingest memos, do not auto-merge induced codes without constant comparison.
+Wrap GTFlow/PaperQA/library outputs as **advisory witnesses** — ingest memos, do not auto-merge induced codes without constant comparison. Fork or extend `technique_registry.local.md` when you adopt a new repo.
 
 ## Forbidden
 

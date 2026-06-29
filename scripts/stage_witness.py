@@ -18,7 +18,13 @@ STAGES = {
     },
     "initial_coding": {
         "label": "Initial / open coding witness",
-        "any_of": ["open_codes.json", "open_codes.jsonl", "clusters.json", "topics.json"],
+        "any_of": [
+            "open_codes.json",
+            "open_codes.jsonl",
+            "open_coding_queue.json",
+            "clusters.json",
+            "topics.json",
+        ],
     },
     "axial_theoretic": {
         "label": "Axial / theoretic coding witness",
@@ -52,9 +58,22 @@ STAGES = {
 }
 
 
+def _queue_has_resolved(root: Path) -> bool:
+    p = root / "open_coding_queue.json"
+    if not p.is_file():
+        return False
+    try:
+        data = json.loads(p.read_text())
+        return int(data.get("stats", {}).get("resolved", 0)) > 0
+    except (json.JSONDecodeError, TypeError, ValueError):
+        return False
+
+
 def _has_artifact(root: Path, names: list[str], dir_ok: list[str] | None = None) -> bool:
     for name in names:
         p = root / name
+        if name == "open_coding_queue.json" and _queue_has_resolved(root):
+            return True
         if p.exists() and (p.is_file() or (p.is_dir() and any(p.iterdir()))):
             return True
     for d in dir_ok or []:

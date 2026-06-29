@@ -2,6 +2,8 @@
 
 Distilled from Table 1–2 and body sections of [computational-framework-process-theory-development.pdf](./computational-framework-process-theory-development.pdf).
 
+**Implementation links:** each technique below maps to concrete libraries and repos in [technique_registry.md](./technique_registry.md).
+
 ## Charmaz workflow (human-led)
 
 ```
@@ -26,6 +28,14 @@ Computational category ID fits **weak process ontology** and **distant reading**
 ### Initial coding (open coding)
 
 **Human question:** What is this snippet a case of?
+
+**LLM ↔ human annotator** (see [open_coding_prompts.md](./open_coding_prompts.md), `scripts/open_coding.py`):
+
+| Mode | Behavior |
+|------|----------|
+| collaborative | LLM suggests 2–4 codes; human settles |
+| human_only | LLM asks only; no suggestions |
+| delegate | LLM codes; human audits later (min HITL) |
 
 **Computational complements:**
 
