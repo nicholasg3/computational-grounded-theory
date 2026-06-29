@@ -16,6 +16,20 @@ Each computational move in the GTM workflow points here. **Pick one primary impl
 | **sp-netnography** | Archival netnography + verbatim quotes | strategic-publishing `sp-netnography` |
 | **sp-lit-review** | Webster & Watson sensitizing lit (not field) | strategic-publishing `sp-lit-review` |
 
+## Stages 0–1 — Field gathering (before compute)
+
+Full playbook: [field_gathering.md](./field_gathering.md) · scaffold: `scripts/field_scaffold.py`.
+
+| Round | Goal | Tools / skills |
+|-------|------|----------------|
+| **0 Scout** | Frame phenomenon, find venues & vocabulary | `gathering_plan.md` · HN Algolia · PRAW · Stack Exchange API · PyGithub · **sp-field-gather** |
+| **1 Deep-fetch** | Cases + first `field_input.jsonl` | trafilatura · Crawl4AI · transcript API · **field_gather_gate** · `cases_and_features.md` |
+| **2+ Expand** | Diversity, negatives, thick quotes | **sp-netnography** · `digital_ethnography.py` · manifest refresh |
+
+**Not field:** PaperQA2, arXiv abstracts, bulk vendor RSS — sensitizing / quarantine only.
+
+---
+
 ## Pipeline siblings (GT-specific)
 
 | Tool | Layer | Link |
@@ -24,6 +38,7 @@ Each computational move in the GTM workflow points here. **Pick one primary impl
 | **PaperQA2** | Scholarly lit RAG / sensitizing only | [github.com/Future-House/paper-qa](https://github.com/Future-House/paper-qa) |
 | **Nelson CGT** | Sociology detect → refine → confirm | [github.com/lknelson/computational-grounded-theory](https://github.com/lknelson/computational-grounded-theory) · [SMR 2020](https://doi.org/10.1177/0049124117729703) |
 | **open_coding.py** | Stage-2 LLM ↔ human annotator harness | `scripts/open_coding.py` |
+| **field_scaffold.py** | Round 0/1 gather templates + gate checks | `scripts/field_scaffold.py` |
 | **Label Studio** | Human labeling / active-learning UI | [github.com/HumanSignal/label-studio](https://github.com/HumanSignal/label-studio) |
 
 ---

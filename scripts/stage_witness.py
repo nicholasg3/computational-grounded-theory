@@ -13,8 +13,14 @@ from pathlib import Path
 
 STAGES = {
     "data": {
-        "label": "Data / cases defined",
-        "any_of": ["field_input.jsonl", "segments.jsonl", "segments.json", "corpus.jsonl"],
+        "label": "Data / cases defined (Round 1+)",
+        "any_of": [
+            "field_input.jsonl",
+            "segments.jsonl",
+            "segments.json",
+            "corpus.jsonl",
+        ],
+        "protocol_ok": ["gathering_plan.md", "corpus_manifest.json"],
     },
     "initial_coding": {
         "label": "Initial / open coding witness",
@@ -69,13 +75,26 @@ def _queue_has_resolved(root: Path) -> bool:
         return False
 
 
-def _has_artifact(root: Path, names: list[str], dir_ok: list[str] | None = None) -> bool:
+def _has_gather_protocol(root: Path, protocol_names: list[str] | None) -> bool:
+    if not protocol_names:
+        return False
+    return all((root / name).is_file() for name in protocol_names)
+
+
+def _has_artifact(
+    root: Path,
+    names: list[str],
+    dir_ok: list[str] | None = None,
+    protocol_ok: list[str] | None = None,
+) -> bool:
     for name in names:
         p = root / name
         if name == "open_coding_queue.json" and _queue_has_resolved(root):
             return True
         if p.exists() and (p.is_file() or (p.is_dir() and any(p.iterdir()))):
             return True
+    if _has_gather_protocol(root, protocol_ok):
+        return True
     for d in dir_ok or []:
         p = root / d
         if p.is_dir() and any(p.glob("*.md")):
@@ -86,7 +105,12 @@ def _has_artifact(root: Path, names: list[str], dir_ok: list[str] | None = None)
 def assess(project_dir: Path) -> dict:
     results = []
     for key, spec in STAGES.items():
-        ok = _has_artifact(project_dir, spec["any_of"], spec.get("dir_ok"))
+        ok = _has_artifact(
+            project_dir,
+            spec["any_of"],
+            spec.get("dir_ok"),
+            spec.get("protocol_ok"),
+        )
         results.append({"stage": key, "label": spec["label"], "ok": ok})
     passed = sum(1 for r in results if r["ok"])
     return {

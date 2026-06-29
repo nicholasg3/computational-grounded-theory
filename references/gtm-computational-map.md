@@ -25,6 +25,14 @@ Computational category ID fits **weak process ontology** and **distant reading**
 
 ## Stage map
 
+### Frame + field gather (steps 0–1)
+
+**Round 0 — scout:** `gathering_plan.md`, `scout_log.json`, `corpus_manifest.json`. Frameworks: Kozinets netnography, Vaast & Urquhart. Tools: HN/Reddit/SO/GitHub APIs, sp-field-gather.
+
+**Round 1 — cases + corpus:** `field_input.jsonl`, `cases_and_features.md`. Deep-fetch: trafilatura, Crawl4AI, transcripts. Gate: ≥30 incidents, ≥2 channels.
+
+See [field_gathering.md](./field_gathering.md) and `scripts/field_scaffold.py`.
+
 ### Initial coding (open coding)
 
 **Human question:** What is this snippet a case of?

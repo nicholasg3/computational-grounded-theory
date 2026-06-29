@@ -16,6 +16,7 @@ Read first:
 - [references/SOURCE.md](references/SOURCE.md) — PDF link + JAIS companion
 - [references/gtm-computational-map.md](references/gtm-computational-map.md) — stage → technique table
 - [references/technique_registry.md](references/technique_registry.md) — **libraries, repos & sibling skills** per technique
+- [references/field_gathering.md](references/field_gathering.md) — **Round 0/1 field gather** tools & frameworks
 - [references/computational-framework-process-theory-development.pdf](references/computational-framework-process-theory-development.pdf)
 
 ## The law
@@ -48,22 +49,44 @@ Project dir should accumulate stage artifacts (see map). Minimum 5/9 stages gree
 
 ## Workflow (walk in order)
 
-### 0 — Frame phenomenon & process ontology
+### 0 — Frame phenomenon + scout (Round 0 gather)
 
-State:
+State the analytic frame **and** run a shallow scout before deep-fetch. See [field_gathering.md](references/field_gathering.md).
 
-- Phenomenon in plain language (problem-first, not jargon)
-- Mohr: process vs variance claim
-- Unit of analysis: utterance | sequence | routine | actor | community
-- Data boundaries: channels, dates, inclusion rules
+| Deliverable | Contents |
+|-------------|----------|
+| `gathering_plan.md` | Phenomenon, Mohr process/variance, unit of analysis, channels, dates, inclusion/exclusion, search strings |
+| `scout_log.json` | Queries, venues found, dead ends |
+| `corpus_manifest.json` | Protocol + `rounds_completed: 0` |
 
-### 1 — Define cases & features
+```bash
+python3 scripts/field_scaffold.py <project_dir> --init --phenomenon "..."
+python3 scripts/field_scaffold.py <project_dir> --round 0 --check
+```
 
-Explicitly encode what the algorithm sees (Berente et al.):
+**Frameworks:** Kozinets netnography · Vaast & Urquhart social-media GT · Charmaz sampling prep.
 
-- **Cases:** segments, events, documents, actors
-- **Features:** in vivo metadata, hard-coded dictionaries, engineered counts
-- Document in `cases_and_features.md` (or `run_meta.json`)
+**Scout tools:** [HN Algolia API](https://hn.algolia.com/api) · [PRAW](https://github.com/praw-dev/praw) (Reddit) · [Stack Exchange API](https://api.stackexchange.com/) · [PyGithub](https://github.com/PyGithub/PyGithub) issues · [OpenAlex](https://openalex.org/) for **venue scout only** (not field voice).
+
+**Agent skills:** **sp-field-gather** (tiered scout → deep-fetch) · **sp-netnography** (after corpus — fieldnotes + quotes).
+
+### 1 — Define cases + first corpus (Round 1 gather)
+
+Explicitly encode what the algorithm sees (Berente et al.) **and** land the first substantive `field_input.jsonl`.
+
+| Deliverable | Contents |
+|-------------|----------|
+| `cases_and_features.md` | Case unit, segmentation, in-vivo fields, engineered features |
+| `field_input.jsonl` | Practitioner incidents (full bodies, provenance) |
+| `corpus_manifest.json` | Channel counts, inclusion audit, `rounds_completed: 1` |
+
+**Gate:** ≥30 substantive incidents (≥120 chars), ≥2 channels — `field_scaffold.py --round 1 --check`.
+
+**Deep-fetch tools:** [trafilatura](https://github.com/adbar/trafilatura) · [Crawl4AI](https://github.com/unclecode/crawl4ai) · [youtube-transcript-api](https://github.com/jdepoix/youtube-transcript-api) · Wayback · Unbrowse (hard sites).
+
+**Strategic-publishing harness** (optional): `field_sources.py` → `field_expansion.py` → `field_gather_gate.py` — copy `field_corpus.jsonl` → `field_input.jsonl`.
+
+Then → stage 2 `open_coding.py --init`.
 
 ### 2 — Initial coding (open)
 

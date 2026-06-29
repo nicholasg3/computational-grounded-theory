@@ -39,6 +39,17 @@ python3 scripts/stage_witness.py path/to/your/gt-project
 python3 scripts/stage_witness.py --selftest
 ```
 
+### Field gathering (stages 0–1)
+
+```bash
+python3 scripts/field_scaffold.py path/to/gt-project --init --phenomenon "..."
+python3 scripts/field_scaffold.py path/to/gt-project --round 0 --check
+python3 scripts/field_scaffold.py path/to/gt-project --round 1 --check
+python3 scripts/field_scaffold.py --selftest
+```
+
+See [references/field_gathering.md](references/field_gathering.md) for scout/deep-fetch tools and **sp-field-gather** / **sp-netnography** skills.
+
 ### Open coding (LLM ↔ human annotator)
 
 ```bash
@@ -60,10 +71,12 @@ references/
   SOURCE.md              # Citations + links
   gtm-computational-map.md
   technique_registry.md  # Libraries, repos & sibling skills per technique
+  field_gathering.md     # Round 0/1 scout + deep-fetch tools
   open_coding_prompts.md
   computational-framework-process-theory-development.pdf
 scripts/
   stage_witness.py       # Mechanical stage gate
+  field_scaffold.py      # Round 0/1 gather templates + gates
   open_coding.py         # Stage-2 LLM↔human open coding harness
 ```
 
