@@ -2,7 +2,7 @@
 
 Agent skill + reference kit for **computational grounded theory** aimed at **process theory** development — mixing Charmaz constructivist GTM with machine pattern recognition.
 
-Based on **Nicholas Garcia**'s methodological guide:
+Based on **Nicholas Mac Gregor Garcia**'s methodological guide:
 
 > **Automating Organizational Research? A Computational Framework for Process Theory Development**
 
