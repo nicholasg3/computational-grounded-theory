@@ -1,11 +1,13 @@
 # Source canon
 
-## Primary PDF (bundled) — **Nicholas Garcia**
+**Author (full):** **Nicholas MacGregor Garcia**
+
+## Primary PDF (bundled) — computational GT framework
 
 **Title:** Automating Organizational Research? A Computational Framework for Process Theory Development  
 **Also known as:** *A Computational Framework for Process Theory Development* (49 pp.)
 
-**Author:** **Nicholas Garcia**
+**Status:** working methodological guide (GitHub); distinct from the 2023 NYU dissertation below.
 
 **Bundled copy:** [computational-framework-process-theory-development.pdf](./computational-framework-process-theory-development.pdf)
 
@@ -41,7 +43,26 @@ https://aisel.aisnet.org/jais/vol21/iss1/7/ · DOI [10.17705/1jais.00593](https:
 | GTFlow | [github.com/zw-zhtlab/GTFlow](https://github.com/zw-zhtlab/GTFlow) | LLM-native GT workspace (open → Gioia → saturation) |
 | PaperQA2 | [github.com/Future-House/paper-qa](https://github.com/Future-House/paper-qa) | **Literature** sensitizing only — not field coding |
 
-## Cite this work
+## Published work by the author (NYU, 2023)
 
-Garcia, N. (*n.d.*). *Automating organizational research? A computational framework for process theory development.*  
+**Title:** "Rule of Code" or "Rule of Man"? How Assumptions of Human Nature Impact the Design of Blockchain-Based Algorithmic Management Systems
+
+| Field | Value |
+|-------|-------|
+| **Author** | Nicholas MacGregor Garcia |
+| **Year** | 2023 |
+| **Institution** | New York University |
+| **Type** | Dissertation / doctoral thesis |
+| **Method** | Qualitative longitudinal field study (grounded theory lineage) |
+| **ProQuest** | https://www.proquest.com/openview/51e7a4fa1025a2b013e6d759af616653/1 |
+
+Empirical process study of software developers designing a blockchain-based governance algorithm — human-nature assumptions vs "Rule of Code" ideals. **Sensitizing prior work** for computational GT; not a substitute for the bundled framework PDF.
+
+**Cite (dissertation):**
+
+> Garcia, N. M. (2023). *"Rule of code" or "rule of man"? How assumptions of human nature impact the design of blockchain-based algorithmic management systems* [Doctoral dissertation, New York University]. ProQuest. https://www.proquest.com/openview/51e7a4fa1025a2b013e6d759af616653/1
+
+## Cite the computational framework (this repo)
+
+Garcia, N. M. (*n.d.*). *Automating organizational research? A computational framework for process theory development.*  
 https://github.com/nicholasg3/computational-grounded-theory

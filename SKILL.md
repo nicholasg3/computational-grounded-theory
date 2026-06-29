@@ -2,7 +2,7 @@
 name: computational-gt
 description: >
   Computational grounded theory for process research — Charmaz constructivist GTM
-  stages augmented with machine pattern recognition per Nicholas Garcia's framework (PDF in
+  stages augmented with machine pattern recognition per Nicholas MacGregor Garcia's framework (PDF in
   references/). Enforces human abductive memos, field-vs-literature separation, negative
   cases, and saturation witnesses. Use for computationally intensive GT, process theory
   from digital traces, mixed-methods qualitative+ML coding, theoretical sampling at scale,
@@ -230,7 +230,8 @@ python3 scripts/stage_witness.py --selftest
 
 When reporting methods, cite:
 
-1. **Garcia, N.** — *Automating Organizational Research? A Computational Framework for Process Theory Development* ([PDF](references/computational-framework-process-theory-development.pdf))
-2. Charmaz (2006) constructivist GTM
-3. Techniques used (clustering, LDA, etc.) per stage
-4. Influences as appropriate (Berente et al. 2018; Lindberg 2020 JAIS; Vaast & Urquhart 2017)
+1. **Garcia, N. M.** — *Automating Organizational Research? A Computational Framework for Process Theory Development* ([PDF](references/computational-framework-process-theory-development.pdf))
+2. **Garcia, N. M.** (2023). *"Rule of code" or "rule of man"?* [NYU dissertation](https://www.proquest.com/openview/51e7a4fa1025a2b013e6d759af616653/1) — published qualitative field study (sensitizing)
+3. Charmaz (2006) constructivist GTM
+4. Techniques used (clustering, LDA, etc.) per stage
+5. Influences as appropriate (Berente et al. 2018; Lindberg 2020 JAIS; Vaast & Urquhart 2017)
