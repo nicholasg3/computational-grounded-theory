@@ -1,28 +1,109 @@
-# computational-grounded-theory
+# Computational Grounded Theory
 
-Agent skill + reference kit for **computational grounded theory** aimed at **process theory** development — mixing Charmaz constructivist GTM with machine pattern recognition.
+**Agent-assisted grounded theory for process research.**
 
-Based on **Nicholas Mac Gregor Garcia**'s methodological guide:
+This repository packages a methodological framework, agent skill, and runnable reference
+scripts for doing computationally assisted grounded theory without losing the interpretive
+discipline that makes grounded theory valuable.
 
-> **Automating Organizational Research? A Computational Framework for Process Theory Development**
+The central idea is simple:
 
-## Source PDF
+> Machines can help researchers see patterns at scale. Humans still have to name the
+> categories, write the abductive memos, examine negative cases, and build the theory.
 
-- **In repo:** [references/computational-framework-process-theory-development.pdf](references/computational-framework-process-theory-development.pdf)
-- **On GitHub:** https://github.com/nicholasg3/computational-grounded-theory/blob/main/references/computational-framework-process-theory-development.pdf
-- **Original local path:** `/Users/nicholasgarcia/Downloads/(long) A Computational Framework for Process Theory Development.pdf`
+The project is based on Nicholas Mac Gregor Garcia's methodological guide:
 
-**Author:** Nicholas Garcia
+> **Automating Organizational Research? A Computational Framework for Process Theory
+> Development**
 
+Bundled PDF: [references/computational-framework-process-theory-development.pdf](references/computational-framework-process-theory-development.pdf)
 
-## Quick start
+## Why This Exists
 
-### As a Grok / Cursor skill
+Qualitative researchers increasingly work with large digital traces: forum archives, issue
+trackers, chat logs, interview corpora, incident reports, support tickets, and social-media
+data. These corpora are often too large for purely manual reading, but too interpretive for
+naive automation.
 
-Copy or symlink into your skills folder:
+This kit is designed for that middle ground.
+
+It helps researchers:
+
+- gather a field corpus with documented inclusion rules
+- separate field evidence from sensitizing literature
+- use machine pattern recognition as a witness, not a substitute
+- run open coding with a human-in-the-loop annotator
+- track negative cases, saturation, and stage completeness
+- preserve a transparent audit trail from raw incidents to process theory
+
+## Methodological Position
+
+This is not "fully automated grounded theory." It is a workflow for pairing computational
+scale with qualitative judgment.
+
+| Layer | Primary role |
+| --- | --- |
+| Field gathering and corpus hygiene | Machine-assisted, human-scoped |
+| Clusters, topics, embeddings, sequences | Machine proposes possible patterns |
+| Open codes, category names, mechanisms | Human adjudicates through constant comparison |
+| Focused coding and verification | Machine + human at scale |
+| Theoretical integration | Human abductive reasoning, literature positioning |
+
+The workflow draws on constructivist grounded theory, process theory, computational social
+science, and information systems research. It is especially suited to research questions
+about **how processes unfold**, **when meanings shift**, and **why actors adapt over time**.
+
+## When To Use It
+
+Good fit:
+
+- process theory development from digital traces
+- organizational routines, AI adoption, governance, fintech, developer communities, and
+  other domains with observable field data
+- mixed qualitative and computational analysis
+- projects that need transparent coding and saturation witnesses
+
+Poor fit:
+
+- small-N ethnography with no digital extension
+- pure prediction or benchmarking papers
+- literature review without field evidence
+- claims that an LLM or clustering algorithm has "discovered the theory" on its own
+
+## What Is Included
+
+```text
+SKILL.md                 # Agent instructions and stage discipline
+references/
+  SOURCE.md              # Citation canon and related frameworks
+  gtm-computational-map.md
+  technique_registry.md  # Libraries, repos, and sibling skills by method stage
+  field_gathering.md     # Round 0/1 scout and deep-fetch guidance
+  open_coding_prompts.md
+  computational-framework-process-theory-development.pdf
+scripts/
+  stage_witness.py       # Mechanical stage-completion witness
+  field_scaffold.py      # Round 0/1 gather templates and gates
+  field_sources.py       # Tiered scout harvest
+  field_expansion.py     # Practitioner deep-fetch
+  refresh_corpus_manifest.py
+  field_gather_gate.py   # Corpus hygiene gate
+  open_coding.py         # LLM-human open-coding harness
+  sync_upstream.py       # Internal-to-public sync tracker
+field_gather/            # Corpus helpers
+vendor/field_sources/    # Bundled gather tool
+upstream/SYNC.json       # Sync count and file hashes
+```
+
+## Quick Start
+
+### 1. Install as an agent skill
+
+For Grok or Cursor-style skill folders:
 
 ```bash
 # user-global
+mkdir -p ~/.grok/skills/computational-gt
 ln -sf "$(pwd)/SKILL.md" ~/.grok/skills/computational-gt/SKILL.md
 
 # or project-local
@@ -30,27 +111,49 @@ mkdir -p .grok/skills/computational-gt
 ln -sf "$(pwd)/SKILL.md" .grok/skills/computational-gt/SKILL.md
 ```
 
-Invoke with `/computational-gt` or let the agent auto-load when you mention computational grounded theory / process theory + ML.
+Invoke it with `/computational-gt`, or let the agent load it when you mention
+computational grounded theory, process theory, digital traces, or qualitative coding with
+machine assistance.
 
-### Stage witness
+### 2. Create a project scaffold
 
 ```bash
-python3 scripts/stage_witness.py path/to/your/gt-project
+python3 scripts/field_scaffold.py path/to/gt-project --init --phenomenon "AI governance workarounds in banks"
+python3 scripts/field_scaffold.py path/to/gt-project --round 0 --check
+python3 scripts/field_scaffold.py path/to/gt-project --round 1 --check
+```
+
+Round 0 documents the phenomenon, field sites, search strings, and inclusion criteria.
+Round 1 requires a first real field corpus.
+
+### 3. Run the stage witness
+
+```bash
+python3 scripts/stage_witness.py path/to/gt-project
 python3 scripts/stage_witness.py --selftest
 ```
 
-### Field gathering (stages 0–1)
+The witness checks whether the project has the expected artifacts for each grounded-theory
+stage.
+
+### 4. Start open coding
 
 ```bash
-python3 scripts/field_scaffold.py path/to/gt-project --init --phenomenon "..."
-python3 scripts/field_scaffold.py path/to/gt-project --round 0 --check
-python3 scripts/field_scaffold.py path/to/gt-project --round 1 --check
-python3 scripts/field_scaffold.py --selftest
+python3 scripts/open_coding.py path/to/gt-project --init --mode collaborative
+python3 scripts/open_coding.py path/to/gt-project --next --batch 3
+python3 scripts/open_coding.py path/to/gt-project --export
+python3 scripts/open_coding.py --selftest
 ```
 
-See [references/field_gathering.md](references/field_gathering.md) for scout/deep-fetch tools and **sp-field-gather** / **sp-netnography** skills.
+Modes:
 
-### Field pipeline (public scripts)
+- `collaborative`: the LLM suggests codes, the human settles them
+- `human_only`: the LLM asks questions but does not suggest codes
+- `delegate`: the LLM codes first, with later human audit
+
+## Field Pipeline
+
+For public field gathering scripts:
 
 ```bash
 export FIELD_GATHER_ROOT=/path/to/project
@@ -60,61 +163,48 @@ python3 scripts/refresh_corpus_manifest.py <slug> --root "$FIELD_GATHER_ROOT"
 python3 scripts/field_gather_gate.py <slug> --root "$FIELD_GATHER_ROOT"
 ```
 
-Internal → public sync: `python3 scripts/sync_upstream.py` · tracker: [upstream/SYNC.json](upstream/SYNC.json)
+See [references/field_gathering.md](references/field_gathering.md) for the field-gathering
+model and [upstream/SYNC.md](upstream/SYNC.md) for sync tracking.
 
-### Open coding (LLM ↔ human annotator)
+## Research Discipline
 
-```bash
-python3 scripts/open_coding.py path/to/gt-project --init --mode collaborative
-python3 scripts/open_coding.py path/to/gt-project --next --batch 3
-python3 scripts/open_coding.py path/to/gt-project --export
-python3 scripts/open_coding.py --selftest
-```
+The workflow enforces a few non-negotiable rules:
 
-Modes: **collaborative** (LLM suggests, human settles), **human_only** (no suggestions), **delegate** (min HITL). See [references/open_coding_prompts.md](references/open_coding_prompts.md).
+- **Field data induces; literature sensitizes.** Papers help frame and position the work,
+  but they do not replace practitioner incidents in open coding.
+- **Machines propose; humans settle.** Clusters, topics, embeddings, and classifiers are
+  candidate witnesses, not final categories.
+- **Zoom in before naming.** Before adopting a computational cluster as a category, inspect
+  central, peripheral, and negative cases in context.
+- **Saturation needs evidence.** Do not claim saturation from model metrics alone.
+- **Memo writing is theory work.** The model can summarize; it cannot replace abductive
+  theoretical memoing.
 
-Expect artifacts per GTM stage — see [references/gtm-computational-map.md](references/gtm-computational-map.md).
+## Related Tools and Frameworks
 
-## Repo layout
+- [GTFlow](https://github.com/zw-zhtlab/GTFlow) - LLM-native grounded-theory workspace
+- [PaperQA2](https://github.com/Future-House/paper-qa) - scholarly literature RAG, useful
+  for sensitizing and positioning
+- [Nelson CGT](https://github.com/lknelson/computational-grounded-theory) - computational
+  grounded theory in sociology
 
-```
-SKILL.md                 # Agent instructions (canonical)
-references/
-  SOURCE.md              # Citations + links
-  gtm-computational-map.md
-  technique_registry.md  # Libraries, repos & sibling skills per technique
-  field_gathering.md     # Round 0/1 scout + deep-fetch tools
-  open_coding_prompts.md
-  computational-framework-process-theory-development.pdf
-scripts/
-  stage_witness.py       # Mechanical stage gate
-  field_scaffold.py      # Round 0/1 gather templates + gates
-  field_sources.py       # Tiered scout harvest (vendor gather.py)
-  field_expansion.py     # Practitioner deep-fetch
-  refresh_corpus_manifest.py
-  field_gather_gate.py   # Corpus hygiene gate
-  sync_upstream.py       # Copy internal → public; bump SYNC.json
-  open_coding.py         # Stage-2 LLM↔human open coding harness
-field_gather/            # paths + corpus helpers
-vendor/field_sources/    # Bundled gather.py (synced from skill-library)
-upstream/SYNC.json       # sync_count + file hashes
-```
+These tools are complementary. This repository focuses on process theory, field corpus
+discipline, and explicit human-machine division of labor.
 
-## Core idea
+## Citation
 
-| Layer | Who |
-|-------|-----|
-| Unsupervised pattern detection | Machine (clusters, topics, sequences) |
-| Naming, mechanisms, process story | Human (abductive memos) |
-| Scale mapping & verification | Machine + human (focused coding, holdout, anomalies) |
-| Literature positioning | Human (sensitizing — not induced codes) |
+If you use this repository or the bundled methodological guide, please cite:
 
-## Related open tools
+> Garcia, N. M. G. (*n.d.*). *Automating organizational research? A computational framework
+> for process theory development.*
+> https://github.com/nicholasg3/computational-grounded-theory
 
-- [GTFlow](https://github.com/zw-zhtlab/GTFlow) — LLM-native GT pipeline + UI
-- [PaperQA2](https://github.com/Future-House/paper-qa) — scholarly lit RAG (not field corpus)
-- [Nelson CGT](https://github.com/lknelson/computational-grounded-theory) — sociology detect/refine/confirm
+Also cite the grounded-theory tradition and any computational techniques you use in your
+actual analysis, including Charmaz, Berente et al., Lindberg, Vaast and Urquhart, and the
+specific clustering, topic-modeling, embedding, or classification methods applied.
 
 ## License
 
-MIT — see [LICENSE](LICENSE). The bundled PDF is included for research and citation convenience; rights remain with the author/publisher.
+Code and repository materials are released under the [MIT License](LICENSE). The bundled
+PDF is included for research and citation convenience; rights remain with the author and
+any relevant publisher.
