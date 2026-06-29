@@ -15,6 +15,7 @@ Each computational move in the GTM workflow points here. **Pick one primary impl
 | **sp-field-gather** | Multi-source practitioner corpus harvest | strategic-publishing `sp-field-gather` |
 | **sp-netnography** | Archival netnography + verbatim quotes | strategic-publishing `sp-netnography` |
 | **sp-lit-review** | Webster & Watson sensitizing lit (not field) | strategic-publishing `sp-lit-review` |
+| **empath** | Open LIWC-style hard dictionaries + custom categories | `~/.grok/skills/empath` · [/empath](https://github.com/Ejhfast/empath-client) |
 
 ## Stages 0–1 — Field gathering (before compute)
 
@@ -76,7 +77,7 @@ Full playbook: [field_gathering.md](./field_gathering.md) · scaffold: `scripts/
 | Mode | GT use | Libraries / repos |
 |------|--------|-------------------|
 | **In vivo** | Participant terms / trace metadata | Your schema + audit memo; no library substitutes judgment |
-| **Hard dictionaries** | Transparent LIWC-style counts | [LIWC-22](https://www.liwc.app/) (licensed) · [empath](https://github.com/Ejhfast/empath-client) (open categories) · [spaCy Matcher](https://spacy.io/usage/rule-based-matching) |
+| **Hard dictionaries** | Transparent LIWC-style counts | **empath** skill (`analyze_corpus.py`) · [empath-client](https://github.com/Ejhfast/empath-client) · [LIWC-22](https://www.liwc.app/) (licensed) · [spaCy Matcher](https://spacy.io/usage/rule-based-matching) |
 | **Politeness / pragmatics** | Interactional mechanism dictionaries | [ConvoKit politeness](https://github.com/CornellNLP/ConvoKit) |
 | **Predictive / classifier** | Scale hand-settled codes | [scikit-learn](https://scikit-learn.org/) · [SetFit](https://github.com/huggingface/setfit) (few-shot) · [Hugging Face Trainer](https://github.com/huggingface/transformers) |
 | **HITL labeling UI** | Seed set + error analysis | [Label Studio](https://github.com/HumanSignal/label-studio) · [doccano](https://github.com/doccano/doccano) |
