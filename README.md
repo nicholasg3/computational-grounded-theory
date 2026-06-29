@@ -14,7 +14,6 @@ Based on **Nicholas Garcia**'s methodological guide:
 
 **Author:** Nicholas Garcia
 
-Related cited work in the framework: Lindberg (2020) JAIS on human + machine pattern recognition — see [references/SOURCE.md](references/SOURCE.md).
 
 ## Quick start
 
