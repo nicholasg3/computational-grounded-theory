@@ -2,7 +2,7 @@
 
 Agent skill + reference kit for **computational grounded theory** aimed at **process theory** development — mixing Charmaz constructivist GTM with machine pattern recognition.
 
-Based on Aron Lindberg's methodological guide:
+Based on **Nicholas Garcia**'s methodological guide:
 
 > **Automating Organizational Research? A Computational Framework for Process Theory Development**
 
@@ -12,10 +12,9 @@ Based on Aron Lindberg's methodological guide:
 - **On GitHub:** https://github.com/nicholasg3/computational-grounded-theory/blob/main/references/computational-framework-process-theory-development.pdf
 - **Original local path:** `/Users/nicholasgarcia/Downloads/(long) A Computational Framework for Process Theory Development.pdf`
 
-Peer-reviewed companion:
+**Author:** Nicholas Garcia
 
-- Lindberg, A. (2020). *Developing theory through integrating human and machine pattern recognition.* **JAIS** 21(1).  
-  https://aisel.aisnet.org/jais/vol21/iss1/7/ · DOI [10.17705/1jais.00593](https://doi.org/10.17705/1jais.00593)
+Related cited work in the framework: Lindberg (2020) JAIS on human + machine pattern recognition — see [references/SOURCE.md](references/SOURCE.md).
 
 ## Quick start
 
