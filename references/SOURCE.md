@@ -2,7 +2,21 @@
 
 **Author (full):** **Nicholas MacGregor Garcia**
 
-## Primary PDF (bundled) — computational GT framework
+## Published anchor — **Nicholas MacGregor Garcia**
+
+**Title:** "Rule of Code" or "Rule of Man"? How Assumptions of Human Nature Impact the
+Design of Blockchain-Based Algorithmic Management Systems  
+**Author:** Nicholas MacGregor Garcia  
+**Publication date:** 2023  
+**Institution:** New York University  
+**ProQuest:** https://www.proquest.com/openview/51e7a4fa1025a2b013e6d759af616653/1
+
+This doctoral dissertation reports a qualitative longitudinal field study of how software
+developers designed a blockchain-based algorithmic management system for a decentralized
+collaborative working community. It is the published research anchor for the process-theory
+and computational grounded-theory tooling in this repository.
+
+## Methodological guide (bundled) — computational GT framework
 
 **Title:** Automating Organizational Research? A Computational Framework for Process Theory Development  
 **Also known as:** *A Computational Framework for Process Theory Development* (49 pp.)
@@ -60,9 +74,10 @@ Empirical process study of software developers designing a blockchain-based gove
 
 **Cite (dissertation):**
 
-> Garcia, N. M. (2023). *"Rule of code" or "rule of man"? How assumptions of human nature impact the design of blockchain-based algorithmic management systems* [Doctoral dissertation, New York University]. ProQuest. https://www.proquest.com/openview/51e7a4fa1025a2b013e6d759af616653/1
+> Garcia, N. M. G. (2023). *"Rule of Code" or "Rule of Man"? How assumptions of human nature impact the design of blockchain-based algorithmic management systems* [Doctoral dissertation, New York University]. ProQuest. https://www.proquest.com/openview/51e7a4fa1025a2b013e6d759af616653/1
 
 ## Cite the computational framework (this repo)
 
-Garcia, N. M. (*n.d.*). *Automating organizational research? A computational framework for process theory development.*  
+Garcia, N. M. G. (2026). *Computational Grounded Theory: Agent-assisted grounded theory
+for process research.*  
 https://github.com/nicholasg3/computational-grounded-theory

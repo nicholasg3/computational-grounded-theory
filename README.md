@@ -13,13 +13,17 @@ The central idea is simple:
 > Machines can help researchers see patterns at scale. Humans still have to name the
 > categories, write the abductive memos, examine negative cases, and build the theory.
 
-The methodological guide bundled here:
+The project is based on Nicholas MacGregor Garcia's published dissertation research on
+blockchain-based algorithmic management and a companion methodological guide:
 
-> **Automating Organizational Research? A Computational Framework for Process Theory Development**
+> **["Rule of Code" or "Rule of Man"? How Assumptions of Human Nature Impact the Design of
+> Blockchain-Based Algorithmic Management Systems](https://www.proquest.com/openview/51e7a4fa1025a2b013e6d759af616653/1)**
+> (New York University, 2023)
 
-**Published prior work (NYU 2023):** [*Rule of Code or Rule of Man?*](https://www.proquest.com/openview/51e7a4fa1025a2b013e6d759af616653/1) — qualitative longitudinal field study of blockchain-based algorithmic management design. See [references/SOURCE.md](references/SOURCE.md).
-
-Bundled framework PDF: [references/computational-framework-process-theory-development.pdf](references/computational-framework-process-theory-development.pdf)
+The repository also includes the methodological guide
+**Automating Organizational Research? A Computational Framework for Process Theory
+Development** as a bundled PDF:
+[references/computational-framework-process-theory-development.pdf](references/computational-framework-process-theory-development.pdf)
 
 ## Why This Exists
 
@@ -198,11 +202,16 @@ discipline, and explicit human-machine division of labor.
 
 If you use this repository or the bundled methodological guide, please cite:
 
-> Garcia, N. M. (*n.d.*). *Automating organizational research? A computational framework for process theory development.* https://github.com/nicholasg3/computational-grounded-theory
+> Garcia, N. M. G. (2023). *"Rule of Code" or "Rule of Man"? How assumptions of human
+> nature impact the design of blockchain-based algorithmic management systems* [Doctoral
+> dissertation, New York University]. ProQuest.
+> https://www.proquest.com/openview/51e7a4fa1025a2b013e6d759af616653/1
 
-Published field study by the same author (sensitizing prior work):
+For the repository and methodological tooling, cite:
 
-> Garcia, N. M. (2023). *"Rule of code" or "rule of man"? How assumptions of human nature impact the design of blockchain-based algorithmic management systems* [Doctoral dissertation, New York University]. ProQuest. https://www.proquest.com/openview/51e7a4fa1025a2b013e6d759af616653/1
+> Garcia, N. M. G. (2026). *Computational Grounded Theory: Agent-assisted grounded theory
+> for process research.*
+> https://github.com/nicholasg3/computational-grounded-theory
 
 Also cite the grounded-theory tradition and any computational techniques you use in your
 actual analysis, including Charmaz, Berente et al., Lindberg, Vaast and Urquhart, and the
