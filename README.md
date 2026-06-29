@@ -50,6 +50,18 @@ python3 scripts/field_scaffold.py --selftest
 
 See [references/field_gathering.md](references/field_gathering.md) for scout/deep-fetch tools and **sp-field-gather** / **sp-netnography** skills.
 
+### Field pipeline (public scripts)
+
+```bash
+export FIELD_GATHER_ROOT=/path/to/project
+python3 scripts/field_sources.py <slug> --tiers 1,2,3 --root "$FIELD_GATHER_ROOT"
+python3 scripts/field_expansion.py <slug> --root "$FIELD_GATHER_ROOT"
+python3 scripts/refresh_corpus_manifest.py <slug> --root "$FIELD_GATHER_ROOT"
+python3 scripts/field_gather_gate.py <slug> --root "$FIELD_GATHER_ROOT"
+```
+
+Internal → public sync: `python3 scripts/sync_upstream.py` · tracker: [upstream/SYNC.json](upstream/SYNC.json)
+
 ### Open coding (LLM ↔ human annotator)
 
 ```bash
@@ -77,7 +89,15 @@ references/
 scripts/
   stage_witness.py       # Mechanical stage gate
   field_scaffold.py      # Round 0/1 gather templates + gates
+  field_sources.py       # Tiered scout harvest (vendor gather.py)
+  field_expansion.py     # Practitioner deep-fetch
+  refresh_corpus_manifest.py
+  field_gather_gate.py   # Corpus hygiene gate
+  sync_upstream.py       # Copy internal → public; bump SYNC.json
   open_coding.py         # Stage-2 LLM↔human open coding harness
+field_gather/            # paths + corpus helpers
+vendor/field_sources/    # Bundled gather.py (synced from skill-library)
+upstream/SYNC.json       # sync_count + file hashes
 ```
 
 ## Core idea

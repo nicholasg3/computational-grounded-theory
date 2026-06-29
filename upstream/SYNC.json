@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "package_version": "0.1.0",
+  "upstream_sp": "~/code/ai-agents-workspace/Projects-for-agents/strategic-publishing",
+  "upstream_skill": "~/code/skill-library/research/field-sources",
+  "sync_count": 2,
+  "last_sync_at": "2026-06-29T01:06:52+00:00",
+  "note": "Run python3 scripts/sync_upstream.py after editing internal scripts. Public wrappers in scripts/ may diverge slightly (field_gather package, --root flag).",
+  "files": {
+    "scripts/field_expansion.py": "2ab3c4fec645dfaf294e35f9467575bd8a12cc02df0853ffe0d5fbe76b5aaad1",
+    "vendor/field_sources/scripts/gather.py": "cec8ca9df4ddedf28886f22477b3cf88b3cf4578f638c54d9c98bf60e9d38359",
+    "vendor/field_sources/scripts/fulltext.py": "07cf9dabd46836bf1bd5b179b038c42098c1a156d35d91d7c487e6f709bea2d3",
+    "vendor/field_sources/scripts/youtube_transcript.py": "49f41ee16ab5665ab40b703d9bff300ecca567e0c00bbbb0097c913b742796e0",
+    "vendor/field_sources/references/tier-registry.json": "42d7858db7e308f758863cc8811c16ecbadac782174bdebf3b3e16ed1f44e887"
+  },
+  "missing_upstream": []
+}

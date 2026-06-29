@@ -22,8 +22,8 @@ Full playbook: [field_gathering.md](./field_gathering.md) · scaffold: `scripts/
 
 | Round | Goal | Tools / skills |
 |-------|------|----------------|
-| **0 Scout** | Frame phenomenon, find venues & vocabulary | `gathering_plan.md` · HN Algolia · PRAW · Stack Exchange API · PyGithub · **sp-field-gather** |
-| **1 Deep-fetch** | Cases + first `field_input.jsonl` | trafilatura · Crawl4AI · transcript API · **field_gather_gate** · `cases_and_features.md` |
+| **0 Scout** | Frame phenomenon, find venues & vocabulary | `scripts/field_sources.py` · HN Algolia · PRAW · **sp-field-gather** |
+| **1 Deep-fetch** | Cases + first `field_input.jsonl` | `scripts/field_expansion.py` · `field_gather_gate.py` · `cases_and_features.md` |
 | **2+ Expand** | Diversity, negatives, thick quotes | **sp-netnography** · `digital_ethnography.py` · manifest refresh |
 
 **Not field:** PaperQA2, arXiv abstracts, bulk vendor RSS — sensitizing / quarantine only.

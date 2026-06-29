@@ -84,7 +84,17 @@ Explicitly encode what the algorithm sees (Berente et al.) **and** land the firs
 
 **Deep-fetch tools:** [trafilatura](https://github.com/adbar/trafilatura) · [Crawl4AI](https://github.com/unclecode/crawl4ai) · [youtube-transcript-api](https://github.com/jdepoix/youtube-transcript-api) · Wayback · Unbrowse (hard sites).
 
-**Strategic-publishing harness** (optional): `field_sources.py` → `field_expansion.py` → `field_gather_gate.py` — copy `field_corpus.jsonl` → `field_input.jsonl`.
+**Public field-gather pipeline** (this repo — synced from internal; see [upstream/SYNC.md](upstream/SYNC.md)):
+
+```bash
+export FIELD_GATHER_ROOT=/path/to/project
+python3 scripts/field_sources.py <slug> --tiers 1,2,3 --root "$FIELD_GATHER_ROOT"
+python3 scripts/field_expansion.py <slug> --root "$FIELD_GATHER_ROOT"
+python3 scripts/refresh_corpus_manifest.py <slug> --root "$FIELD_GATHER_ROOT"
+python3 scripts/field_gather_gate.py <slug> --root "$FIELD_GATHER_ROOT"
+```
+
+Copy `ethnography/<slug>/field_corpus.jsonl` → `field_input.jsonl` for open coding.
 
 Then → stage 2 `open_coding.py --init`.
 

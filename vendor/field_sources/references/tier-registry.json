@@ -1,0 +1,384 @@
+{
+  "_note": "Tiered field-source registry for qualitative IS / process-theory research. status: live | partial | manual. Adapters: rss, arxiv, hn, reddit, stackoverflow, youtube, substack, sec_edgar, retweet_library, manual_intake, snowball.",
+  "snowball": {
+    "enabled": true,
+    "max_depth": 1,
+    "max_per_seed": 8,
+    "max_total": 80,
+    "min_seed_relevance": 3,
+    "follow_citations": true,
+    "follow_links": true,
+    "prefer_oa_citations": false,
+    "skip_domains": [
+      "twitter.com", "x.com", "facebook.com", "instagram.com", "youtube.com",
+      "youtu.be", "linkedin.com", "t.co", "bit.ly", "goo.gl", "mailto:",
+      "subscribe", "unsubscribe", "feedburner.com", "doubleclick.net"
+    ]
+  },
+  "tiers": {
+    "1": {
+      "label": "Industry & practitioner primary",
+      "priority": 1,
+      "source_types": {
+        "practitioner_substack": {
+          "status": "live",
+          "adapter": "substack_rss",
+          "voice": "practitioner",
+          "feeds": [
+            "https://notboring.substack.com/feed",
+            "https://oneusefulthing.substack.com/feed",
+            "https://importai.substack.com/feed",
+            "https://karozieminski.substack.com/feed",
+            "https://thealgorithmicbridge.substack.com/feed",
+            "https://www.lennysnewsletter.com/feed"
+          ]
+        },
+        "engineering_blog": {
+          "status": "live",
+          "adapter": "rss",
+          "voice": "practitioner",
+          "feeds": [
+            "https://openai.com/blog/rss.xml",
+            "https://www.anthropic.com/rss.xml",
+            "https://blog.google/technology/ai/rss/",
+            "https://engineering.fb.com/feed/",
+            "https://aws.amazon.com/blogs/machine-learning/feed/",
+            "https://netflixtechblog.com/feed",
+            "https://eng.uber.com/feed/",
+            "https://stripe.com/blog/feed.rss"
+          ]
+        },
+        "technical_conference": {
+          "status": "partial",
+          "adapter": "rss",
+          "voice": "practitioner",
+          "feeds": [
+            "https://queue.acm.org/rss.cfm",
+            "https://feed.infoq.com/",
+            "https://www.usenix.org/blog/feed"
+          ],
+          "manual": "Add keynote URLs / proceedings PDFs to ethnography/<slug>/manual_intake/"
+        },
+        "hacker_news": {
+          "status": "live",
+          "adapter": "hn",
+          "voice": "practitioner",
+          "query": "AI agent memory context",
+          "since_days": 90,
+          "min_points": 15,
+          "max_hits": 40
+        },
+        "reddit_discourse": {
+          "status": "live",
+          "adapter": "reddit",
+          "voice": "practitioner",
+          "query": "AI agent memory context persistence stale rollback",
+          "subreddits": [
+            "LocalLLaMA",
+            "MachineLearning",
+            "LangChain",
+            "OpenAI",
+            "ClaudeAI",
+            "singularity"
+          ],
+          "since_days": 730,
+          "min_score": 5,
+          "max_hits": 35,
+          "reconciliation_queries": [
+            "agent remembered wrong",
+            "persistent context bug",
+            "we disabled memory",
+            "memory caused",
+            "stale memory vector"
+          ]
+        },
+        "github_framework_issues": {
+          "status": "partial",
+          "adapter": "manual_intake",
+          "voice": "practitioner",
+          "manual": "Deep-fetch issue bodies via gh/api into ethnography/<slug>/manual_intake/github_issues/. Protocol: strategic-publishing/doctrine/RECONCILIATION_FIELD_TARGETS.md",
+          "repos": [
+            "langchain-ai/langchain",
+            "run-llama/llama_index",
+            "microsoft/autogen",
+            "crewAIInc/crewAI",
+            "openai/openai-agents-python"
+          ],
+          "search_terms": [
+            "memory",
+            "forget",
+            "hallucinated memory",
+            "state",
+            "checkpoint",
+            "rollback",
+            "sync",
+            "corrupt"
+          ]
+        },
+        "stack_overflow_discourse": {
+          "status": "live",
+          "adapter": "stackoverflow",
+          "voice": "practitioner",
+          "query": "agent memory context LLM persistence checkpoint rollback",
+          "tags": ["langchain", "llm", "openai-api", "generative-ai", "langchain-js"],
+          "min_score": 2,
+          "max_hits": 30,
+          "site": "stackoverflow",
+          "reconciliation_queries": [
+            "stale memory",
+            "context persistence",
+            "agent state checkpoint"
+          ]
+        },
+        "youtube_discourse": {
+          "status": "live",
+          "adapter": "youtube",
+          "voice": "practitioner",
+          "query": "AI agent memory architecture LLM production",
+          "max_hits": 10,
+          "max_transcript_chars": 12000,
+          "languages": ["en"]
+        },
+        "trend_scout_signals": {
+          "status": "live",
+          "adapter": "signals",
+          "voice": "field"
+        },
+        "x_practitioner_discourse": {
+          "status": "live",
+          "adapter": "retweet_library",
+          "voice": "practitioner"
+        },
+        "standards_body": {
+          "status": "partial",
+          "adapter": "rss",
+          "voice": "institutional",
+          "feeds": [
+            "https://www.w3.org/blog/news/feed/",
+            "https://www.ietf.org/blog/feed/"
+          ]
+        },
+        "company_technical_report": {
+          "status": "partial",
+          "adapter": "rss",
+          "voice": "practitioner",
+          "feeds": [
+            "https://research.nvidia.com/rss.xml",
+            "https://ai.meta.com/blog/rss/"
+          ],
+          "manual": "Drop PDF/HTML reports into citations/<slug>/ or manual_intake/"
+        },
+        "industry_conference_proceedings": {
+          "status": "manual",
+          "adapter": "manual_intake",
+          "voice": "practitioner",
+          "manual": "ICIS/ECIS/MISQ practitioner tracks, ACM proceedings — ingest via manual_intake/ + citation capture"
+        },
+        "keynote_talk": {
+          "status": "partial",
+          "adapter": "youtube",
+          "voice": "practitioner",
+          "query": "keynote LLM agents memory enterprise",
+          "max_hits": 6,
+          "max_transcript_chars": 14000,
+          "languages": ["en"],
+          "manual": "Or drop speaker deck → manual_intake/<slug>/keynotes/"
+        }
+      }
+    },
+    "2": {
+      "label": "Market & institutional analysis",
+      "priority": 2,
+      "source_types": {
+        "vc_analysis": {
+          "status": "live",
+          "adapter": "rss",
+          "voice": "analyst",
+          "feeds": [
+            "https://a16z.com/feed/",
+            "https://www.sequoiacap.com/feed/",
+            "https://www.ben-evans.com/benedictevans?format=rss"
+          ]
+        },
+        "consulting_report": {
+          "status": "partial",
+          "adapter": "rss",
+          "voice": "analyst",
+          "feeds": [
+            "https://www.mckinsey.com/featured-insights/rss",
+            "https://www.bcg.com/rss-feeds"
+          ],
+          "manual": "Gated PDFs → manual_intake/"
+        },
+        "bank_research": {
+          "status": "partial",
+          "adapter": "rss",
+          "voice": "analyst",
+          "feeds": [
+            "https://www.goldmansachs.com/rss/insights.xml"
+          ],
+          "manual": "Institutional research often gated — capture public summaries only"
+        },
+        "central_bank_publication": {
+          "status": "live",
+          "adapter": "rss",
+          "voice": "institutional",
+          "feeds": [
+            "https://www.bis.org/doclist/all_pressrels.rss",
+            "https://www.federalreserve.gov/feeds/press_all.xml",
+            "https://www.ecb.europa.eu/rss/press.html"
+          ]
+        },
+        "hedge_fund_letter": {
+          "status": "manual",
+          "adapter": "manual_intake",
+          "voice": "analyst",
+          "manual": "Public investor letters (e.g. annual letters) → manual_intake/"
+        },
+        "linkedin_article": {
+          "status": "manual",
+          "adapter": "manual_intake",
+          "voice": "practitioner",
+          "manual": "No reliable unauthenticated API — paste exports to manual_intake/linkedin/"
+        }
+      }
+    },
+    "3": {
+      "label": "Scholarly & IS literature",
+      "priority": 3,
+      "source_types": {
+        "open_access_scholarly": {
+          "status": "live",
+          "adapter": "openalex_oa",
+          "voice": "academic",
+          "query_from_topic": true,
+          "oa_filter": "is_oa:true",
+          "types": ["article", "proceedings-article", "preprint", "review", "book-chapter"],
+          "per_page": 25,
+          "from_year": 2015,
+          "note": "OpenAlex OA index — journals, proceedings, repos; not arXiv-only"
+        },
+        "conference_proceedings_oa": {
+          "status": "live",
+          "adapter": "openalex_oa",
+          "voice": "academic",
+          "query_from_topic": true,
+          "oa_filter": "is_oa:true,type:proceedings-article",
+          "per_page": 20,
+          "from_year": 2010,
+          "note": "ACL, NeurIPS, ICIS/AMCIS proceedings when green/gold OA"
+        },
+        "is_conference_oa": {
+          "status": "live",
+          "adapter": "openalex_oa",
+          "voice": "academic",
+          "query_from_topic": true,
+          "extra_terms": "information systems ICIS AMCIS ECIS",
+          "oa_filter": "is_oa:true,type:proceedings-article",
+          "per_page": 15,
+          "from_year": 2010
+        },
+        "semantic_scholar_oa": {
+          "status": "live",
+          "adapter": "semantic_scholar_oa",
+          "voice": "academic",
+          "query_from_topic": true,
+          "limit": 20,
+          "note": "Independent OA PDF crawl; supplements OpenAlex"
+        },
+        "arxiv": {
+          "status": "live",
+          "adapter": "arxiv",
+          "voice": "academic",
+          "query": "cat:cs.AI+OR+cat:cs.CL+OR+cat:cs.CE",
+          "note": "Preprints only — parallel to openalex_oa, not a substitute"
+        },
+        "ssrn": {
+          "status": "partial",
+          "adapter": "rss",
+          "voice": "academic",
+          "feeds": [
+            "https://papers.ssrn.com/sol3/rss.cfm?abstract_id=0"
+          ],
+          "manual": "Topic-specific SSRN search → citation capture"
+        },
+        "is_literature": {
+          "status": "partial",
+          "adapter": "openalex_oa",
+          "voice": "academic",
+          "query_from_topic": true,
+          "extra_terms": "MIS quarterly information systems research",
+          "oa_filter": "is_oa:true",
+          "types": ["article", "proceedings-article"],
+          "per_page": 15,
+          "manual": "Paywalled MISQ/ISR → research_pack.py + lib fetch; OA copies via OpenAlex/Unpaywall"
+        },
+        "management_journal": {
+          "status": "partial",
+          "adapter": "openalex_oa",
+          "voice": "academic",
+          "query_from_topic": true,
+          "extra_terms": "management information systems",
+          "oa_filter": "is_oa:true,type:article",
+          "per_page": 12,
+          "manual": "Gated JMIS/ISR → citations/<slug>/; OA author versions auto-harvested"
+        },
+        "practitioner_journal": {
+          "status": "live",
+          "adapter": "rss",
+          "voice": "academic",
+          "feeds": [
+            "https://aisel.aisnet.org/cgi/recent.rss"
+          ],
+          "note": "AIS eLibrary — many ICIS/AMCIS papers are OA here"
+        }
+      }
+    },
+    "4": {
+      "label": "News, narrative & market speech",
+      "priority": 4,
+      "source_types": {
+        "reputable_news": {
+          "status": "live",
+          "adapter": "rss",
+          "voice": "journalist",
+          "feeds": [
+            "https://feeds.arstechnica.com/arstechnica/technology-lab",
+            "https://www.economist.com/science-and-technology/rss.xml",
+            "https://www.reuters.com/rssFeed/technologyNews",
+            "https://feeds.bbci.co.uk/news/technology/rss.xml"
+          ]
+        },
+        "interview": {
+          "status": "manual",
+          "adapter": "manual_intake",
+          "voice": "practitioner",
+          "manual": "Interview transcripts → manual_intake/interviews/"
+        },
+        "podcast": {
+          "status": "partial",
+          "adapter": "rss",
+          "voice": "practitioner",
+          "feeds": [
+            "https://lexfridman.com/feed/podcast/",
+            "https://feeds.simplecast.com/54nAGcIl"
+          ],
+          "manual": "Transcribe high-signal episodes → manual_intake/podcasts/"
+        },
+        "earnings_call": {
+          "status": "partial",
+          "adapter": "sec_edgar",
+          "voice": "institutional",
+          "query": "artificial intelligence earnings",
+          "manual": "SEC 8-K item 2.02 + full transcripts → manual_intake/transcripts/"
+        },
+        "transcript": {
+          "status": "manual",
+          "adapter": "manual_intake",
+          "voice": "practitioner",
+          "manual": "Conference/webinar transcripts → manual_intake/transcripts/"
+        }
+      }
+    }
+  }
+}

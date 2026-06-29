@@ -56,17 +56,30 @@ python3 scripts/field_scaffold.py <project_dir> --init --phenomenon "..."
 | **sp-field-gather** | Tiered scout → deep-fetch → manifest | `field_sources`, `field_expansion`, `field_gather_gate` |
 | **sp-netnography** | After substantive corpus — fieldnotes + quotes | `digital_ethnography`, `netnography_field_gate` |
 
-**Strategic-publishing harness** (if using that pipeline):
+**Public field-gather pipeline** ([computational-grounded-theory](https://github.com/nicholasg3/computational-grounded-theory)):
+
+```bash
+cd computational-grounded-theory
+export FIELD_GATHER_ROOT=/path/to/project    # ethnography/<slug>/ lives here
+
+python3 scripts/field_sources.py <slug> --tiers 1,2,3 --root "$FIELD_GATHER_ROOT"
+python3 scripts/field_expansion.py <slug> --root "$FIELD_GATHER_ROOT"
+python3 scripts/refresh_corpus_manifest.py <slug> --root "$FIELD_GATHER_ROOT"
+python3 scripts/field_gather_gate.py <slug> --root "$FIELD_GATHER_ROOT"
+```
+
+From **strategic-publishing** (same commands, root = repo):
 
 ```bash
 cd Projects-for-agents/strategic-publishing
-python3 scripts/field_sources.py <slug> --tiers 1,2,3
-python3 scripts/field_expansion.py <slug>
-python3 scripts/refresh_corpus_manifest.py <slug>
-python3 scripts/field_gather_gate.py <slug>
+export FIELD_GATHER_ROOT="$(pwd)"
+python3 ../computational-grounded-theory/scripts/field_sources.py <slug> --tiers 1,2,3 --root "$FIELD_GATHER_ROOT"
+# … expansion, manifest, gate likewise
 ```
 
-Copy or symlink resulting `field_corpus.jsonl` → your GT project `field_input.jsonl`.
+**Upstream sync:** after editing internal scripts, run `python3 scripts/sync_upstream.py` — tracks `sync_count` in [upstream/SYNC.json](../upstream/SYNC.json).
+
+Copy or symlink `ethnography/<slug>/field_corpus.jsonl` → GT project `field_input.jsonl`.
 
 ---
 
