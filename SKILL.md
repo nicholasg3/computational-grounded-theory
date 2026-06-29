@@ -158,7 +158,7 @@ Map settled codes onto corpus at scale.
 |------|------|
 | In vivo | Participant terms / trace enums — audit metadata quality first |
 | Hard | **empath** skill (`~/.grok/skills/empath`, `analyze_corpus.py`) · [empath-client](https://github.com/Ejhfast/empath-client) · [LIWC](https://www.liwc.app/) · [spaCy Matcher](https://spacy.io/usage/rule-based-matching); [ConvoKit politeness](https://github.com/CornellNLP/ConvoKit) |
-| Predictive | [SetFit](https://github.com/huggingface/setfit) or sklearn; seed via [Label Studio](https://github.com/HumanSignal/label-studio) — watch concept drift |
+| Predictive | **setfit** skill (`~/.grok/skills/setfit`, `focused_coding.py`) · [Label Studio](https://github.com/HumanSignal/label-studio) for seeds — watch concept drift |
 
 See [stage 5 registry](references/technique_registry.md#stage-5--focused-coding).
 
